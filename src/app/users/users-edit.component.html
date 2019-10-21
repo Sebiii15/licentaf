@@ -1,0 +1,53 @@
+<div class="container" style="height:500px">
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="form">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <mat-form-field class="long-input" style="margin-top: 20px; margin-left: 20px">
+                <input class="long-input" [errorStateMatcher]="matcher" formControlName="username" matInput placeholder="Nume utilizator">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <mat-form-field class="long-input" style="margin-top: 20px; margin-left: 20px">
+                <input class="long-input" [errorStateMatcher]="matcher" formControlName="password" matInput placeholder="Parola">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <mat-form-field class="long-input" style="margin-top: 20px; margin-left: 20px">
+                <input class="long-input" [errorStateMatcher]="matcher" formControlName="email" matInput placeholder="Email">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <mat-form-field class="long-input" style="margin-top: 20px; margin-left: 20px">
+                <input class="long-input" [errorStateMatcher]="matcher" formControlName="role" matInput placeholder="Rol">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+  
+        <div mat-dialog-actions>
+          <button mat-button [type]="submit" [mat-dialog-close]="1" (click)="stopEdit(id)">Save</button>
+          <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        </div>
+
+      </form>
+    </div>

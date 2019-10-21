@@ -1,0 +1,124 @@
+<mat-card class="mat-elevation-z8" style="margin-top: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 30px;">
+  <div class="row">
+    <div class="col-xs-6" style="margin-left: 20px; width:600px;">
+      
+      <alert></alert>
+      <h3 mat-dialog-title>Creaza un departament</h3>
+      <form [formGroup]="form">
+
+        <div class="row">
+          <mat-form-field style="margin-top: 20px; margin-left: 20px">
+            <input [errorStateMatcher]="matcher" formControlName="name" matInput placeholder="Prescurtare">
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
+              Introduceti o valoare
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field style="margin-top: 20px; margin-left: 20px">
+            <input formControlName="fullName" matInput placeholder="Nume complet">
+            <mat-error *ngIf="form.controls['name'].hasError('required')">
+              Introduceti o valoare
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xs-12" formArrayName="groups">
+          <label for="imagePath">Grupe</label>
+          <button mat-icon-button color="primary" (click)="addNewDepartment()">
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          </button>
+          <div class="row" *ngFor="let ingredientCtrl of form.get('groups').controls; let i = index" [formGroupName]="i" style="margin-top: 10px;">
+            <mat-form-field style="margin-left: 50px">
+              <input formControlName="name" matInput placeholder="Nume">
+              <mat-error *ngIf="form.get('groups').controls[i].hasError('required')">
+                  Introduceti o valoare
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field style="margin-left: 50px">
+              <input formControlName="year" matInput placeholder="Anul" [matAutocomplete]="auto">
+              <mat-error *ngIf="form.get('groups').controls[i].hasError('required')">
+                  Introduceti o valoare
+                </mat-error>
+            </mat-form-field>
+
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+              </mat-autocomplete>
+
+            <div class="col-xs-2">
+              <button mat-icon-button color="accent" (click)="onDeleteDepartment(i)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <button type="submit" [disabled]="!form.valid" (click)="onSubmit()" class="btn btn-success" style="margin-top: 20px">Salveaza</button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form">
+        <mat-form-field floatPlaceholder="never" color="accent">
+          <input matInput #filter placeholder="Filter issues">
+        </mat-form-field>
+      </div>
+
+      <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Nume</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fullName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Nume Complet</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.fullName }}</mat-cell>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            <button mat-icon-button color="primary" (click)="refresh()">
+                <mat-icon aria-label="Example icon-button with a heart icon">cached</mat-icon>
+            </button>
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let row; let i=index;">
+            <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.name, row.fullName, row.groups)">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="accent" (click)="deleteDepartment(i, row.id, row.name, row.fullName)">
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+
+      <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+        No results
+      </div>
+
+      <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 15, 25, 100]">
+      </mat-paginator>
+    </div>
+  </div>
+</mat-card>
