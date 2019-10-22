@@ -22,8 +22,11 @@ import { StudentsComponent } from './students/students.component'
 ;
 import { UsersComponent } from './users/users.component'
 import { UserService } from './users/users.service';
-import { UserEditDialogComponent } from './users/users-edit.component';;
-import { GroupsComponent } from './groups/groups.component'
+import { UserEditDialogComponent } from './users/users-edit.component';
+import { GroupsComponent } from './groups/groups.component';
+;
+import { GroupsAddComponent } from './groups-add/groups-add.component';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -43,7 +46,9 @@ import { GroupsComponent } from './groups/groups.component'
         StudentsComponent,
         UsersComponent,
         UserEditDialogComponent,
-        GroupsComponent],
+        GroupsComponent,
+        GroupsAddComponent],
+        
        
     providers: [
   
