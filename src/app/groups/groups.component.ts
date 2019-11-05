@@ -9,7 +9,8 @@ export class GroupsComponent implements OnInit {
 
   constructor() { }
 
-  itemsList:{ id: number, name: string, country:string,city:string,salary:string }[]= [{id:1,
+  itemsList:{ id: number, name: string, country:string,city:string,salary:string }[]= [
+          {id:1,
            name: "Sebi",
            country: "Sustache",
            city: "OT",

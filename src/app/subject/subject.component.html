@@ -1,0 +1,71 @@
+<mat-card class="mat-elevation-z8"
+  style="margin-top: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 30px;">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Date generale</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Numele materiei" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Prescurtare" formControlName="abreviation" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Anul" formControlName="year" required [matAutocomplete]="autoYear">
+        </mat-form-field>
+        <mat-autocomplete #autoYear="matAutocomplete">
+          <mat-option *ngFor="let option of yearOptions" [value]="option" (click)="filterGroups(option)">{{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-form-field>
+          <input matInput placeholder="Grupa" formControlName="group" required [matAutocomplete]="autoGroup">
+        </mat-form-field>
+        <mat-autocomplete #autoGroup="matAutocomplete">
+          <mat-option *ngFor="let option of groupOptions" [value]="option.name">{{option.name}}</mat-option>
+        </mat-autocomplete>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Adauga laboratoare</ng-template>
+        <button class="btn btn-success" style="margin-top: 20px;margin-bottom: 20px;" (click)="addNewItem()">
+          Adauga
+        </button>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let item of itemsList;let i = index" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{item.title}}
+              </mat-panel-title>
+              <mat-panel-description>
+                    {{item.description}}    <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                      <button mat-icon-button color="accent" (click)="delete(i, row.id, row.name, row.facultyName, row.semester)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                    </button>
+                  </div>
+
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

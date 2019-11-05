@@ -1,6 +1,6 @@
 ﻿import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -25,8 +25,18 @@ import { UserService } from './users/users.service';
 import { UserEditDialogComponent } from './users/users-edit.component';
 import { GroupsComponent } from './groups/groups.component';
 ;
-import { GroupsAddComponent } from './groups-add/groups-add.component';
-
+import { GroupsAddComponent } from './groups-add/groups-add.component';;
+import { NavbarComponent } from './navbar/navbar.component'
+;
+import { SidebarComponent } from './sidebar/sidebar.component'
+;
+import { SubjectComponent } from './subject/subject.component'
+;
+import { StudentLabListComponent } from './student-lab-list/student-lab-list.component'
+;
+import { StudentLabItemComponent } from './student-lab-item/student-lab-item.component'
+;
+import { SubjectLabListEditComponent } from './subject-lab-list-edit/subject-lab-list-edit.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -34,7 +44,8 @@ import { GroupsAddComponent } from './groups-add/groups-add.component';
         HttpClientModule,
         routing,
         MaterialModule,
-        BrowserAnimationsModule       
+        BrowserAnimationsModule,    
+        FormsModule    
     ],
     declarations: [
         AppComponent,
@@ -47,7 +58,13 @@ import { GroupsAddComponent } from './groups-add/groups-add.component';
         UsersComponent,
         UserEditDialogComponent,
         GroupsComponent,
-        GroupsAddComponent],
+        GroupsAddComponent,
+        SidebarComponent,
+        NavbarComponent,
+        SubjectComponent,
+        StudentLabListComponent,
+        StudentLabItemComponent,
+        SubjectLabListEditComponent],
         
        
     providers: [

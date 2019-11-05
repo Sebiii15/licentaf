@@ -1,0 +1,39 @@
+
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let item of labs;let i = index"  (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+                  {{item.description}}   
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+             <div class="col-md-8">
+                <div class="row">
+                    <i class="material-icons"  style="padding-right: 20px;">
+                    event
+                    </i>
+                    <p>Numarul de laboratoare: {{item.labs}}</p>
+                </div>
+             </div>
+             <div class="col-md-4">
+                <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                    <button mat-icon-button color="accent" (click)="edit(row)">
+                      <mat-icon aria-label="Edit">edit</mat-icon>
+                  </button>
+                </div>
+             </div>
+                  
+          </div>
+          <div class="row">
+              <i class="material-icons" style="padding-right: 20px;">
+                  laptop_mac
+                  </i>
+                  <p>Numarul de teme: {{item.homeworks}}</p>   
+          </div>
+       
+        </mat-expansion-panel>
+      </mat-accordion>
