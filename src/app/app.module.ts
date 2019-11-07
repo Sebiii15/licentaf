@@ -37,6 +37,7 @@ import { StudentLabListComponent } from './student-lab-list/student-lab-list.com
 import { StudentLabItemComponent } from './student-lab-item/student-lab-item.component'
 ;
 import { SubjectLabListEditComponent } from './subject-lab-list-edit/subject-lab-list-edit.component';
+import { StudentService } from './student-lab-list/student.service';
 @NgModule({
     imports: [
         BrowserModule,
@@ -66,11 +67,11 @@ import { SubjectLabListEditComponent } from './subject-lab-list-edit/subject-lab
         StudentLabItemComponent,
         SubjectLabListEditComponent],
         
-       
     providers: [
   
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        UserService
+        UserService,
+        StudentService
 
         // provider used to create fake backe
     ],

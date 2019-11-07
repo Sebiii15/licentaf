@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { StudentService } from './student.service';
 
 @Component({
   selector: 'app-student-lab-list',
@@ -9,16 +10,17 @@ import { Subscription } from 'rxjs';
 })
 export class StudentLabListComponent implements OnInit,OnDestroy {
   panelOpenState = false;
-  labs: any = [{name:"PCLP", description:"Programarea calculatoarelor si limbaje de programare", labs:"12", homeworks:"2"}
-              ,{name:"BD", description:"Baze de date", labs:"12", homeworks:"4"}]
+  labs: any ;
 
-  constructor(
+  constructor(private service: StudentService,
               private router: Router,
               private route: ActivatedRoute) {
+
+                this.labs = service.getAll();
   }
 
-  edit(row:any){
-    this.router.navigate(['/list/edit']);    
+  edit(id:any){
+    this.router.navigate(['/list/edit', id]);    
   }
 
   ngOnInit() {

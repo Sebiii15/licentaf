@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     // { path: 'subject', component: SubjectComponent},
     // { path: 'list/edit', component: SubjectLabListEditComponent},
      { path: '', component: StudentLabListComponent},
-     { path: 'list/edit', component: SubjectLabListEditComponent},
+     { path: 'list/edit/:id', component: SubjectLabListEditComponent},
     // otherwise redirect to home
     // { path: '**', redirectTo: '' },
     // { path: 'dashboard',      component: UsersComponent },
